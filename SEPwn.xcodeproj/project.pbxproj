@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		/* Main source files */
+		E8000001001 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8000002001; };
+		E8000001002 /* jailbreak_ios26.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002002; };
+		E8000001003 /* kernel_rw_primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002003; };
+		E8000001004 /* kernel_info_leak.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002004; };
+		E8000001005 /* pac_bypass.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002005; };
+		E8000001006 /* sep_iokit_fuzzer.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002006; };
+		E8000001007 /* exploit_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002007; };
+		E8000001008 /* kernel_offsets.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002008; };
+		
+		/* Frameworks */
+		E8000003001 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004001; };
+		E8000003002 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004002; };
+		E8000003003 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004003; };
+		E8000003004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004004; };
+		E8000003005 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004005; };
+		
+		/* Resources */
+		E8000005001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8000006001; };
+		E8000005002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8000006002; };
+		E8000005003 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8000006003; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		/* Product */
+		E8000000001 /* SEPwn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEPwn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		
+		/* Source files */
+		E8000002001 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E8000002002 /* jailbreak_ios26.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jailbreak_ios26.c; sourceTree = "<group>"; };
+		E8000002003 /* kernel_rw_primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_rw_primitives.c; sourceTree = "<group>"; };
+		E8000002004 /* kernel_info_leak.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_info_leak.c; sourceTree = "<group>"; };
+		E8000002005 /* pac_bypass.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pac_bypass.c; sourceTree = "<group>"; };
+		E8000002006 /* sep_iokit_fuzzer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sep_iokit_fuzzer.c; sourceTree = "<group>"; };
+		E8000002007 /* exploit_utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = exploit_utils.c; sourceTree = "<group>"; };
+		E8000002008 /* kernel_offsets.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_offsets.c; sourceTree = "<group>"; };
+		
+		/* Headers */
+		E8000002101 /* jailbreak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jailbreak.h; sourceTree = "<group>"; };
+		E8000002102 /* kernel_rw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_rw.h; sourceTree = "<group>"; };
+		E8000002103 /* pac_bypass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pac_bypass.h; sourceTree = "<group>"; };
+		E8000002104 /* kernel_offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_offsets.h; sourceTree = "<group>"; };
+		E8000002105 /* exploit_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exploit_utils.h; sourceTree = "<group>"; };
+		E8000002106 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		
+		/* Frameworks */
+		E8000004001 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		E8000004002 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		E8000004003 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E8000004004 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E8000004005 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		
+		/* Resources */
+		E8000006001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8000006002 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E8000006003 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		
+		/* Supporting Files */
+		E8000007001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8000007002 /* SEPwn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SEPwn.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8000008001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8000003001 /* IOKit.framework in Frameworks */,
+				E8000003002 /* CoreFoundation.framework in Frameworks */,
+				E8000003003 /* Security.framework in Frameworks */,
+				E8000003004 /* Foundation.framework in Frameworks */,
+				E8000003005 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E8000009001 = {
+			isa = PBXGroup;
+			children = (
+				E8000009002 /* SEPwn */,
+				E8000009003 /* Frameworks */,
+				E8000009004 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E8000009002 /* SEPwn */ = {
+			isa = PBXGroup;
+			children = (
+				E8000009005 /* Sources */,
+				E8000009006 /* Headers */,
+				E8000009007 /* Resources */,
+				E8000009008 /* Supporting Files */,
+			);
+			path = SEPwn;
+			sourceTree = "<group>";
+		};
+		E8000009003 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8000004001 /* IOKit.framework */,
+				E8000004002 /* CoreFoundation.framework */,
+				E8000004003 /* Security.framework */,
+				E8000004004 /* Foundation.framework */,
+				E8000004005 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8000009004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8000000001 /* SEPwn.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8000009005 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E8000002001 /* main.m */,
+				E8000002002 /* jailbreak_ios26.c */,
+				E8000002003 /* kernel_rw_primitives.c */,
+				E8000002004 /* kernel_info_leak.c */,
+				E8000002005 /* pac_bypass.c */,
+				E8000002006 /* sep_iokit_fuzzer.c */,
+				E8000002007 /* exploit_utils.c */,
+				E8000002008 /* kernel_offsets.c */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		E8000009006 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				E8000002101 /* jailbreak.h */,
+				E8000002102 /* kernel_rw.h */,
+				E8000002103 /* pac_bypass.h */,
+				E8000002104 /* kernel_offsets.h */,
+				E8000002105 /* exploit_utils.h */,
+				E8000002106 /* common.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		E8000009007 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E8000006001 /* Assets.xcassets */,
+				E8000006002 /* LaunchScreen.storyboard */,
+				E8000006003 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E8000009008 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8000007001 /* Info.plist */,
+				E8000007002 /* SEPwn.entitlements */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E800000A001 /* SEPwn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E800000B001 /* Build configuration list for PBXNativeTarget "SEPwn" */;
+			buildPhases = (
+				E800000C001 /* Sources */,
+				E8000008001 /* Frameworks */,
+				E800000D001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SEPwn;
+			productName = SEPwn;
+			productReference = E8000000001 /* SEPwn.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E800000E001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					E800000A001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = E800000F001 /* Build configuration list for PBXProject "SEPwn" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E8000009001;
+			productRefGroup = E8000009004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E800000A001 /* SEPwn */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E800000D001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8000005001 /* Assets.xcassets in Resources */,
+				E8000005002 /* LaunchScreen.storyboard in Resources */,
+				E8000005003 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E800000C001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8000001001 /* main.m in Sources */,
+				E8000001002 /* jailbreak_ios26.c in Sources */,
+				E8000001003 /* kernel_rw_primitives.c in Sources */,
+				E8000001004 /* kernel_info_leak.c in Sources */,
+				E8000001005 /* pac_bypass.c in Sources */,
+				E8000001006 /* sep_iokit_fuzzer.c in Sources */,
+				E8000001007 /* exploit_utils.c in Sources */,
+				E8000001008 /* kernel_offsets.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E8000010001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64e;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E8000010002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64e;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E8000011001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "SEPwn/Supporting Files/SEPwn.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/SEPwn/Headers";
+				INFOPLIST_FILE = "SEPwn/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = SEPwn;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_CFLAGS = "-DDEBUG=1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.security.sepwn;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E8000011002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "SEPwn/Supporting Files/SEPwn.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/SEPwn/Headers";
+				INFOPLIST_FILE = "SEPwn/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = SEPwn;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_CFLAGS = "-DNDEBUG=1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.security.sepwn;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E800000B001 /* Build configuration list for PBXNativeTarget "SEPwn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8000011001 /* Debug */,
+				E8000011002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E800000F001 /* Build configuration list for PBXProject "SEPwn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8000010001 /* Debug */,
+				E8000010002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E800000E001 /* Project object */;
+}

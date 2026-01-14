@@ -1,0 +1,190 @@
+name: Build SEPwn iOS App
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: 'Build configuration'
+        required: true
+        default: 'Release'
+        type: choice
+        options:
+          - Debug
+          - Release
+
+env:
+  PROJECT_NAME: SEPwn
+  SCHEME: SEPwn
+  CONFIGURATION: ${{ github.event.inputs.configuration || 'Release' }}
+
+jobs:
+  build:
+    name: Build iOS App
+    runs-on: macos-14
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+          
+      - name: Show Xcode version
+        run: |
+          xcodebuild -version
+          xcode-select -p
+          
+      - name: Show available SDKs
+        run: xcodebuild -showsdks
+        
+      - name: List schemes
+        run: xcodebuild -project SEPwn.xcodeproj -list
+        
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild \
+            -project SEPwn.xcodeproj \
+            -scheme ${{ env.SCHEME }} \
+            -configuration ${{ env.CONFIGURATION }} \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            build | xcpretty --color || true
+            
+      - name: Build for iOS Device (unsigned)
+        run: |
+          xcodebuild \
+            -project SEPwn.xcodeproj \
+            -scheme ${{ env.SCHEME }} \
+            -configuration ${{ env.CONFIGURATION }} \
+            -sdk iphoneos \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            DEVELOPMENT_TEAM="" \
+            build | xcpretty --color || true
+            
+      - name: Create IPA (unsigned)
+        run: |
+          APP_PATH="build/DerivedData/Build/Products/${{ env.CONFIGURATION }}-iphoneos/SEPwn.app"
+          if [ -d "$APP_PATH" ]; then
+            mkdir -p build/Payload
+            cp -r "$APP_PATH" build/Payload/
+            cd build
+            zip -r SEPwn-unsigned.ipa Payload
+            echo "IPA created successfully"
+            ls -la SEPwn-unsigned.ipa
+          else
+            echo "App bundle not found at $APP_PATH"
+            echo "Checking available builds..."
+            find build -name "*.app" -type d 2>/dev/null || echo "No .app found"
+          fi
+          
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: SEPwn-${{ env.CONFIGURATION }}-${{ github.sha }}
+          path: |
+            build/DerivedData/Build/Products/**/*.app
+            build/*.ipa
+          if-no-files-found: warn
+          retention-days: 30
+          
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: SEPwn-IPA-${{ github.sha }}
+          path: build/SEPwn-unsigned.ipa
+          if-no-files-found: ignore
+          retention-days: 30
+
+  analyze:
+    name: Static Analysis
+    runs-on: macos-14
+    needs: build
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+          
+      - name: Run Static Analyzer
+        run: |
+          xcodebuild \
+            -project SEPwn.xcodeproj \
+            -scheme ${{ env.SCHEME }} \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            analyze | xcpretty --color || true
+
+  release:
+    name: Create Release
+    runs-on: macos-14
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: SEPwn-IPA-${{ github.sha }}
+          path: release/
+          
+      - name: Get version
+        id: version
+        run: |
+          VERSION=$(grep -A1 'CFBundleShortVersionString' SEPwn/Supporting\ Files/Info.plist | grep string | sed 's/.*<string>\(.*\)<\/string>.*/\1/' || echo "1.0.0")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION"
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: success()
+        with:
+          tag_name: v${{ steps.version.outputs.version }}-${{ github.run_number }}
+          name: SEPwn v${{ steps.version.outputs.version }}
+          body: |
+            ## SEPwn iOS 26.1 Jailbreak
+            
+            **Build:** ${{ github.run_number }}
+            **Commit:** ${{ github.sha }}
+            
+            ### Target
+            - iOS 26.1 (Build 23B85)
+            - iPhone Air (iPhone18,4)
+            - Apple A19 Pro (t8150)
+            
+            ### Installation
+            1. Download the unsigned IPA
+            2. Sign with your certificate or use TrollStore
+            3. Install on your device
+            
+            ### Warning
+            This is a security research tool for authorized testing only.
+          files: |
+            release/SEPwn-unsigned.ipa
+          draft: false
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
