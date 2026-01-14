@@ -7,167 +7,153 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		/* Main source files */
-		E8000001001 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8000002001; };
-		E8000001002 /* jailbreak_ios26.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002002; };
-		E8000001003 /* kernel_rw_primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002003; };
-		E8000001004 /* kernel_info_leak.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002004; };
-		E8000001005 /* pac_bypass.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002005; };
-		E8000001006 /* sep_iokit_fuzzer.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002006; };
-		E8000001007 /* exploit_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002007; };
-		E8000001008 /* kernel_offsets.c in Sources */ = {isa = PBXBuildFile; fileRef = E8000002008; };
+		/* Swift source files */
+		E8100001001 /* SEPwnApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002001; };
+		E8100001002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002002; };
+		E8100001003 /* JailbreakManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002003; };
+		E8100001004 /* ExploitBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002004; };
 		
 		/* Frameworks */
-		E8000003001 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004001; };
-		E8000003002 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004002; };
-		E8000003003 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004003; };
-		E8000003004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004004; };
-		E8000003005 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8000004005; };
+		E8100003001 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8100004001; };
+		E8100003002 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8100004002; };
 		
 		/* Resources */
-		E8000005001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8000006001; };
-		E8000005002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8000006002; };
-		E8000005003 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8000006003; };
+		E8100005001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8100006001; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		/* Product */
-		E8000000001 /* SEPwn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEPwn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8100000001 /* SEPwn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEPwn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		
-		/* Source files */
-		E8000002001 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E8000002002 /* jailbreak_ios26.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jailbreak_ios26.c; sourceTree = "<group>"; };
-		E8000002003 /* kernel_rw_primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_rw_primitives.c; sourceTree = "<group>"; };
-		E8000002004 /* kernel_info_leak.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_info_leak.c; sourceTree = "<group>"; };
-		E8000002005 /* pac_bypass.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pac_bypass.c; sourceTree = "<group>"; };
-		E8000002006 /* sep_iokit_fuzzer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sep_iokit_fuzzer.c; sourceTree = "<group>"; };
-		E8000002007 /* exploit_utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = exploit_utils.c; sourceTree = "<group>"; };
-		E8000002008 /* kernel_offsets.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_offsets.c; sourceTree = "<group>"; };
+		/* Swift source files */
+		E8100002001 /* SEPwnApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEPwnApp.swift; sourceTree = "<group>"; };
+		E8100002002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E8100002003 /* JailbreakManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JailbreakManager.swift; sourceTree = "<group>"; };
+		E8100002004 /* ExploitBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploitBridge.swift; sourceTree = "<group>"; };
+		
+		/* C source files (for reference) */
+		E8100002101 /* jailbreak_ios26.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jailbreak_ios26.c; sourceTree = "<group>"; };
+		E8100002102 /* kernel_rw_primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_rw_primitives.c; sourceTree = "<group>"; };
+		E8100002103 /* kernel_info_leak.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_info_leak.c; sourceTree = "<group>"; };
+		E8100002104 /* pac_bypass.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pac_bypass.c; sourceTree = "<group>"; };
+		E8100002105 /* sep_iokit_fuzzer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sep_iokit_fuzzer.c; sourceTree = "<group>"; };
+		E8100002106 /* exploit_utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = exploit_utils.c; sourceTree = "<group>"; };
+		E8100002107 /* kernel_offsets.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_offsets.c; sourceTree = "<group>"; };
 		
 		/* Headers */
-		E8000002101 /* jailbreak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jailbreak.h; sourceTree = "<group>"; };
-		E8000002102 /* kernel_rw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_rw.h; sourceTree = "<group>"; };
-		E8000002103 /* pac_bypass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pac_bypass.h; sourceTree = "<group>"; };
-		E8000002104 /* kernel_offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_offsets.h; sourceTree = "<group>"; };
-		E8000002105 /* exploit_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exploit_utils.h; sourceTree = "<group>"; };
-		E8000002106 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		E8100002201 /* jailbreak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jailbreak.h; sourceTree = "<group>"; };
+		E8100002202 /* kernel_rw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_rw.h; sourceTree = "<group>"; };
+		E8100002203 /* pac_bypass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pac_bypass.h; sourceTree = "<group>"; };
+		E8100002204 /* kernel_offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_offsets.h; sourceTree = "<group>"; };
+		E8100002205 /* exploit_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exploit_utils.h; sourceTree = "<group>"; };
+		E8100002206 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		
 		/* Frameworks */
-		E8000004001 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		E8000004002 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		E8000004003 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		E8000004004 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E8000004005 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E8100004001 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		E8100004002 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		
 		/* Resources */
-		E8000006001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E8000006002 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E8000006003 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E8100006001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		
 		/* Supporting Files */
-		E8000007001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8000007002 /* SEPwn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SEPwn.entitlements; sourceTree = "<group>"; };
+		E8100007001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8100007002 /* SEPwn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SEPwn.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E8000008001 /* Frameworks */ = {
+		E8100008001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8000003001 /* IOKit.framework in Frameworks */,
-				E8000003002 /* CoreFoundation.framework in Frameworks */,
-				E8000003003 /* Security.framework in Frameworks */,
-				E8000003004 /* Foundation.framework in Frameworks */,
-				E8000003005 /* UIKit.framework in Frameworks */,
+				E8100003001 /* IOKit.framework in Frameworks */,
+				E8100003002 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E8000009001 = {
+		E8100009001 = {
 			isa = PBXGroup;
 			children = (
-				E8000009002 /* SEPwn */,
-				E8000009003 /* Frameworks */,
-				E8000009004 /* Products */,
+				E8100009002 /* SEPwn */,
+				E8100009003 /* Frameworks */,
+				E8100009004 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E8000009002 /* SEPwn */ = {
+		E8100009002 /* SEPwn */ = {
 			isa = PBXGroup;
 			children = (
-				E8000009005 /* Sources */,
-				E8000009006 /* Headers */,
-				E8000009007 /* Resources */,
-				E8000009008 /* Supporting Files */,
+				E8100009005 /* Sources */,
+				E8100009006 /* Headers */,
+				E8100009007 /* Resources */,
+				E8100009008 /* Supporting Files */,
 			);
 			path = SEPwn;
 			sourceTree = "<group>";
 		};
-		E8000009003 /* Frameworks */ = {
+		E8100009003 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E8000004001 /* IOKit.framework */,
-				E8000004002 /* CoreFoundation.framework */,
-				E8000004003 /* Security.framework */,
-				E8000004004 /* Foundation.framework */,
-				E8000004005 /* UIKit.framework */,
+				E8100004001 /* IOKit.framework */,
+				E8100004002 /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E8000009004 /* Products */ = {
+		E8100009004 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8000000001 /* SEPwn.app */,
+				E8100000001 /* SEPwn.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8000009005 /* Sources */ = {
+		E8100009005 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E8000002001 /* main.m */,
-				E8000002002 /* jailbreak_ios26.c */,
-				E8000002003 /* kernel_rw_primitives.c */,
-				E8000002004 /* kernel_info_leak.c */,
-				E8000002005 /* pac_bypass.c */,
-				E8000002006 /* sep_iokit_fuzzer.c */,
-				E8000002007 /* exploit_utils.c */,
-				E8000002008 /* kernel_offsets.c */,
+				E8100002001 /* SEPwnApp.swift */,
+				E8100002002 /* ContentView.swift */,
+				E8100002003 /* JailbreakManager.swift */,
+				E8100002004 /* ExploitBridge.swift */,
+				E8100002101 /* jailbreak_ios26.c */,
+				E8100002102 /* kernel_rw_primitives.c */,
+				E8100002103 /* kernel_info_leak.c */,
+				E8100002104 /* pac_bypass.c */,
+				E8100002105 /* sep_iokit_fuzzer.c */,
+				E8100002106 /* exploit_utils.c */,
+				E8100002107 /* kernel_offsets.c */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		E8000009006 /* Headers */ = {
+		E8100009006 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				E8000002101 /* jailbreak.h */,
-				E8000002102 /* kernel_rw.h */,
-				E8000002103 /* pac_bypass.h */,
-				E8000002104 /* kernel_offsets.h */,
-				E8000002105 /* exploit_utils.h */,
-				E8000002106 /* common.h */,
+				E8100002201 /* jailbreak.h */,
+				E8100002202 /* kernel_rw.h */,
+				E8100002203 /* pac_bypass.h */,
+				E8100002204 /* kernel_offsets.h */,
+				E8100002205 /* exploit_utils.h */,
+				E8100002206 /* common.h */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
 		};
-		E8000009007 /* Resources */ = {
+		E8100009007 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E8000006001 /* Assets.xcassets */,
-				E8000006002 /* LaunchScreen.storyboard */,
-				E8000006003 /* Main.storyboard */,
+				E8100006001 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		E8000009008 /* Supporting Files */ = {
+		E8100009008 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E8000007001 /* Info.plist */,
-				E8000007002 /* SEPwn.entitlements */,
+				E8100007001 /* Info.plist */,
+				E8100007002 /* SEPwn.entitlements */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -175,13 +161,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E800000A001 /* SEPwn */ = {
+		E810000A001 /* SEPwn */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E800000B001 /* Build configuration list for PBXNativeTarget "SEPwn" */;
+			buildConfigurationList = E810000B001 /* Build configuration list for PBXNativeTarget "SEPwn" */;
 			buildPhases = (
-				E800000C001 /* Sources */,
-				E8000008001 /* Frameworks */,
-				E800000D001 /* Resources */,
+				E810000C001 /* Sources */,
+				E8100008001 /* Frameworks */,
+				E810000D001 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -189,24 +175,26 @@
 			);
 			name = SEPwn;
 			productName = SEPwn;
-			productReference = E8000000001 /* SEPwn.app */;
+			productReference = E8100000001 /* SEPwn.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E800000E001 /* Project object */ = {
+		E810000E001 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					E800000A001 = {
+					E810000A001 = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
-			buildConfigurationList = E800000F001 /* Build configuration list for PBXProject "SEPwn" */;
+			buildConfigurationList = E810000F001 /* Build configuration list for PBXProject "SEPwn" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,53 +202,47 @@
 				en,
 				Base,
 			);
-			mainGroup = E8000009001;
-			productRefGroup = E8000009004 /* Products */;
+			mainGroup = E8100009001;
+			productRefGroup = E8100009004 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E800000A001 /* SEPwn */,
+				E810000A001 /* SEPwn */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E800000D001 /* Resources */ = {
+		E810000D001 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8000005001 /* Assets.xcassets in Resources */,
-				E8000005002 /* LaunchScreen.storyboard in Resources */,
-				E8000005003 /* Main.storyboard in Resources */,
+				E8100005001 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E800000C001 /* Sources */ = {
+		E810000C001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8000001001 /* main.m in Sources */,
-				E8000001002 /* jailbreak_ios26.c in Sources */,
-				E8000001003 /* kernel_rw_primitives.c in Sources */,
-				E8000001004 /* kernel_info_leak.c in Sources */,
-				E8000001005 /* pac_bypass.c in Sources */,
-				E8000001006 /* sep_iokit_fuzzer.c in Sources */,
-				E8000001007 /* exploit_utils.c in Sources */,
-				E8000001008 /* kernel_offsets.c in Sources */,
+				E8100001001 /* SEPwnApp.swift in Sources */,
+				E8100001002 /* ContentView.swift in Sources */,
+				E8100001003 /* JailbreakManager.swift in Sources */,
+				E8100001004 /* ExploitBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		E8000010001 /* Debug */ = {
+		E8100010001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64e;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -308,20 +290,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		E8000010002 /* Release */ = {
+		E8100010002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64e;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -363,75 +347,82 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		E8000011001 /* Debug */ = {
+		E8100011001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "SEPwn/Supporting Files/SEPwn.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/SEPwn/Headers";
 				INFOPLIST_FILE = "SEPwn/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = SEPwn;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				OTHER_CFLAGS = "-DDEBUG=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.security.sepwn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		E8000011002 /* Release */ = {
+		E8100011002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "SEPwn/Supporting Files/SEPwn.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/SEPwn/Headers";
 				INFOPLIST_FILE = "SEPwn/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = SEPwn;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				OTHER_CFLAGS = "-DNDEBUG=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.security.sepwn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -439,25 +430,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E800000B001 /* Build configuration list for PBXNativeTarget "SEPwn" */ = {
+		E810000B001 /* Build configuration list for PBXNativeTarget "SEPwn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8000011001 /* Debug */,
-				E8000011002 /* Release */,
+				E8100011001 /* Debug */,
+				E8100011002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E800000F001 /* Build configuration list for PBXProject "SEPwn" */ = {
+		E810000F001 /* Build configuration list for PBXProject "SEPwn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8000010001 /* Debug */,
-				E8000010002 /* Release */,
+				E8100010001 /* Debug */,
+				E8100010002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E800000E001 /* Project object */;
+	rootObject = E810000E001 /* Project object */;
 }

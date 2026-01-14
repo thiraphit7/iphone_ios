@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- 
+	SEPwn Full Entitlements for Jailbreak
+	
+	IMPORTANT: Use this file for post-signing with ldid or jtool2
+	after building the app. These entitlements are required for
+	the jailbreak to function but cannot be used during normal
+	Xcode signing.
+	
+	Usage:
+	  ldid -S"SEPwn-full.entitlements" SEPwn.app/SEPwn
+	-->
+	
+	<!-- Basic App Entitlements -->
+	<key>application-identifier</key>
+	<string>com.security.sepwn</string>
+	
+	<key>keychain-access-groups</key>
+	<array>
+		<string>com.security.sepwn</string>
+	</array>
+	
+	<key>get-task-allow</key>
+	<true/>
+	
+	<!-- Sandbox Escape -->
+	<key>com.apple.private.security.no-sandbox</key>
+	<true/>
+	
+	<!-- Task for PID 0 - Required for kernel access -->
+	<key>task_for_pid-allow</key>
+	<true/>
+	
+	<!-- Platform Application - Run as system app -->
+	<key>platform-application</key>
+	<true/>
+	
+	<!-- Skip Library Validation -->
+	<key>com.apple.private.skip-library-validation</key>
+	<true/>
+	
+	<!-- Disable AMFI -->
+	<key>com.apple.private.amfi.can-load-cdhash</key>
+	<true/>
+	
+	<key>com.apple.private.amfi.can-execute-cdhash</key>
+	<true/>
+	
+	<!-- IOKit Access -->
+	<key>com.apple.private.iokit.user-client-class</key>
+	<array>
+		<string>AppleSEPManagerUserClient</string>
+		<string>AppleSEPKeyStoreUserClient</string>
+		<string>AppleSEPCredentialManagerUserClient</string>
+		<string>ApplePearlSEPDriverUserClient</string>
+		<string>IOBiometricFamilyUserClient</string>
+	</array>
+	
+	<!-- Mach Port Access -->
+	<key>com.apple.private.mach-port-access</key>
+	<true/>
+	
+	<!-- Security Access -->
+	<key>com.apple.private.security.storage.AppDataContainers</key>
+	<true/>
+	
+	<key>com.apple.private.security.storage.MobileDocuments</key>
+	<true/>
+	
+	<!-- Root Access -->
+	<key>com.apple.private.persona-mgmt</key>
+	<true/>
+	
+	<!-- File System Access -->
+	<key>com.apple.private.vfs.snapshot</key>
+	<true/>
+	
+	<key>com.apple.private.apfs.revert-to-snapshot</key>
+	<true/>
+	
+	<key>com.apple.private.apfs.create-sealed-snapshot</key>
+	<true/>
+	
+	<!-- Debugging -->
+	<key>com.apple.private.cs.debugger</key>
+	<true/>
+	
+	<key>com.apple.system-task-ports</key>
+	<true/>
+	
+	<!-- Memory Access -->
+	<key>com.apple.private.memorystatus</key>
+	<true/>
+	
+	<!-- Kernel Extension Loading -->
+	<key>com.apple.private.kernel.override-cpumon</key>
+	<true/>
+	
+	<!-- SEP Access -->
+	<key>com.apple.private.sep.manager</key>
+	<true/>
+	
+	<key>com.apple.private.keystore.access</key>
+	<true/>
+</dict>
+</plist>

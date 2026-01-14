@@ -2,7 +2,9 @@
 
 [![Build SEPwn iOS App](https://github.com/thiraphit7/iphone_ios/actions/workflows/build-ios.yml/badge.svg)](https://github.com/thiraphit7/iphone_ios/actions/workflows/build-ios.yml)
 
-A proof-of-concept jailbreak for iOS 26.1 targeting the iPhone Air with Apple A19 Pro SoC.
+A SwiftUI-based proof-of-concept jailbreak for iOS 26.1 targeting the iPhone Air with Apple A19 Pro SoC.
+
+**Now with LiveContainer support!**
 
 > **⚠️ WARNING:** This is a security research tool intended for authorized penetration testing only.
 
@@ -29,12 +31,15 @@ A proof-of-concept jailbreak for iOS 26.1 targeting the iPhone Air with Apple A1
 
 ```
 ├── SEPwn/
-│   ├── Headers/           # Header files
-│   ├── Sources/           # Source code
-│   ├── Resources/         # Storyboards & Assets
+│   ├── Headers/           # C Header files
+│   ├── Sources/           # Swift & C source code
+│   │   ├── SEPwnApp.swift       # SwiftUI App entry
+│   │   ├── ContentView.swift    # Main UI
+│   │   ├── JailbreakManager.swift
+│   │   └── ExploitBridge.swift  # C bridge
+│   ├── Resources/         # Assets
 │   ├── Supporting Files/  # Info.plist & Entitlements
-│   ├── scripts/           # Build scripts
-│   └── README.md
+│   └── scripts/           # Build scripts
 ├── SEPwn.xcodeproj/       # Xcode project
 ├── .github/workflows/     # GitHub Actions
 └── README.md
@@ -82,17 +87,22 @@ xcodebuild -project SEPwn.xcodeproj \
 
 ## Installation
 
-### Option 1: TrollStore
+### Option 1: LiveContainer
+1. Download the unsigned IPA from Releases
+2. Import into LiveContainer
+3. Launch from LiveContainer
+
+### Option 2: TrollStore
 1. Download the unsigned IPA from Releases
 2. Open with TrollStore
 3. Install
 
-### Option 2: Sideloading
+### Option 3: Sideloading
 1. Download the unsigned IPA
 2. Sign with your certificate (AltStore, Sideloadly)
 3. Install on device
 
-### Option 3: Development
+### Option 4: Development
 1. Build in Xcode with your developer account
 2. Run directly on device
 
