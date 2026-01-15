@@ -22,8 +22,11 @@
 		E8100003001 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8100004001; };
 		E8100003002 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8100004002; };
 		
-		/* Resources */
-		E8100005001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8100006001; };
+/* C source files */
+			E8100001101 /* jailbreak_exports.c in Sources */ = {isa = PBXBuildFile; fileRef = E8100002108; };
+			
+			/* Resources */
+			E8100005001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8100006001; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +44,9 @@
 			E8100002008 /* FileSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemManager.swift; sourceTree = "<group>"; };
 			E8100002009 /* FileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorView.swift; sourceTree = "<group>"; };
 		
-		/* C source files (for reference) */
-		E8100002101 /* jailbreak_ios26.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jailbreak_ios26.c; sourceTree = "<group>"; };
+	/* C source files */
+			E8100002108 /* jailbreak_exports.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jailbreak_exports.c; sourceTree = "<group>"; };
+			E8100002101 /* jailbreak_ios26.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jailbreak_ios26.c; sourceTree = "<group>"; };
 		E8100002102 /* kernel_rw_primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_rw_primitives.c; sourceTree = "<group>"; };
 		E8100002103 /* kernel_info_leak.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = kernel_info_leak.c; sourceTree = "<group>"; };
 		E8100002104 /* pac_bypass.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pac_bypass.c; sourceTree = "<group>"; };
@@ -138,9 +142,10 @@ E8100002006 /* ShellManager.swift */,
 				E8100002104 /* pac_bypass.c */,
 				E8100002105 /* sep_iokit_fuzzer.c */,
 				E8100002106 /* exploit_utils.c */,
-				E8100002107 /* kernel_offsets.c */,
-			);
-			path = Sources;
+E8100002107 /* kernel_offsets.c */,
+					E8100002108 /* jailbreak_exports.c */,
+				);
+				path = Sources;
 			sourceTree = "<group>";
 		};
 		E8100009006 /* Headers */ = {
@@ -251,9 +256,10 @@ E8100002006 /* ShellManager.swift */,
 E8100001006 /* ShellManager.swift in Sources */,
 					E8100001007 /* FileManagerView.swift in Sources */,
 					E8100001008 /* FileSystemManager.swift in Sources */,
-					E8100001009 /* FileEditorView.swift in Sources */,
-				);
-				runOnlyForDeploymentPostprocessing = 0;
+E8100001009 /* FileEditorView.swift in Sources */,
+					E8100001101 /* jailbreak_exports.c in Sources */,
+					);
+					runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
