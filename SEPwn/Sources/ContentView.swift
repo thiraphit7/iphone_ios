@@ -9,7 +9,7 @@ struct ContentView: View {
     @StateObject private var jailbreakManager = JailbreakManager()
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack(spacing: 20) {
                 // Header
                 headerSection
@@ -137,7 +137,7 @@ struct ContentView: View {
                         }
                     }
                 }
-                .onChange(of: jailbreakManager.logs.count) { _ in
+                .onChange(of: jailbreakManager.logs.count) { newCount in
                     if let lastLog = jailbreakManager.logs.last {
                         withAnimation {
                             proxy.scrollTo(lastLog.id, anchor: .bottom)
