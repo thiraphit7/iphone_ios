@@ -110,8 +110,16 @@ void jailbreak_cleanup(void) {
 uint64_t find_kernel_base(void) {
     // Use mach info leak to find kernel base
     if (g_kernel_base == 0) {
-        mach_info_leak_execute();
-        g_kernel_base = mach_info_leak_get_kernel_base();
+        // Initialize first if not done
+        if (!g_jailbreak_initialized) {
+            jailbreak_init();
+        }
+        
+        // Try to execute mach info leak
+        int result = mach_info_leak_execute();
+        if (result == 0) {
+            g_kernel_base = mach_info_leak_get_kernel_base();
+        }
         
         // Fallback to default if leak failed
         if (g_kernel_base == 0) {
