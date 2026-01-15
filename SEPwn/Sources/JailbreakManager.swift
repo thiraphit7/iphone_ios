@@ -200,7 +200,7 @@ class JailbreakManager: ObservableObject {
         log("System: \(device.systemName) \(device.systemVersion)", level: .info)
         
         // REAL EXPLOIT: Verify exploit is active
-        guard ExploitBridge.isExploitActive() || true else {
+        if !ExploitBridge.isExploitActive() {
             // Allow to continue for initial setup
             log("Exploit not yet active, continuing setup...", level: .info)
         }
