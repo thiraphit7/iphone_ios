@@ -11,6 +11,7 @@ struct ContentView: View {
     
     enum Tab {
         case jailbreak
+        case files
         case terminal
         case settings
     }
@@ -23,6 +24,13 @@ struct ContentView: View {
                     Label("Jailbreak", systemImage: "lock.open.fill")
                 }
                 .tag(Tab.jailbreak)
+            
+            // Files Tab (only enabled after jailbreak)
+            FileManagerView(jailbreakManager: jailbreakManager)
+                .tabItem {
+                    Label("Files", systemImage: "folder.fill")
+                }
+                .tag(Tab.files)
             
             // Terminal Tab (only enabled after jailbreak)
             Group {
@@ -77,6 +85,7 @@ struct JailbreakView: View {
             .navigationTitle("SEPwn")
             .navigationBarTitleDisplayMode(.large)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     // MARK: - Header Section
@@ -291,6 +300,9 @@ struct SettingsView: View {
                         
                         Button(action: {
                             // Open Sileo
+                            if let url = URL(string: "sileo://") {
+                                UIApplication.shared.open(url)
+                            }
                         }) {
                             HStack {
                                 Image(systemName: "shippingbox.fill")
@@ -301,6 +313,9 @@ struct SettingsView: View {
                         
                         Button(action: {
                             // Open Zebra
+                            if let url = URL(string: "zbra://") {
+                                UIApplication.shared.open(url)
+                            }
                         }) {
                             HStack {
                                 Image(systemName: "shippingbox.fill")
@@ -365,6 +380,7 @@ struct SettingsView: View {
                 )
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
