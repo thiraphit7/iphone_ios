@@ -30,7 +30,7 @@ struct FileManagerView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                if !jailbreakManager.isJailbroken {
+                if !jailbreakManager.isComplete {
                     lockedView
                 } else {
                     fileListView
@@ -39,7 +39,7 @@ struct FileManagerView: View {
             .navigationTitle("Files")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if jailbreakManager.isJailbroken {
+                if jailbreakManager.isComplete {
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         Button(action: { showingSearchSheet = true }) {
                             Image(systemName: "magnifyingglass")

@@ -325,8 +325,8 @@ struct HexViewerView: View {
                 return
             }
             
-            var rows: [(offset: Int, hex: String, ascii: String)] = []
             let bytesPerRow = 16
+            var tempRows: [(offset: Int, hex: String, ascii: String)] = []
             
             for offset in stride(from: 0, to: min(data.count, 4096), by: bytesPerRow) {
                 let endIndex = min(offset + bytesPerRow, data.count)
@@ -341,11 +341,12 @@ struct HexViewerView: View {
                     }
                 }.joined()
                 
-                rows.append((offset: offset, hex: hex, ascii: ascii))
+                tempRows.append((offset: offset, hex: hex, ascii: ascii))
             }
             
+            let finalRows = tempRows
             await MainActor.run {
-                hexData = rows
+                hexData = finalRows
                 isLoading = false
             }
         }
