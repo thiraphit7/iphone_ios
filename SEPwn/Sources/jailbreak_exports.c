@@ -34,8 +34,21 @@ static int g_exploit_active = 0;
 static uint64_t g_kernel_base = 0;
 static uint64_t g_kernel_slide = 0;
 
-// MARK: - Jailbreak Init/Run/Cleanup
+// MARK: - Forward Declarations
 
+/* Forward declarations for new exploit modules */
+extern int iokit_exploit_init(void);
+extern int iokit_exploit_execute(void);
+extern void iokit_exploit_cleanup(void);
+extern int xpc_exploit_init(void);
+extern int xpc_exploit_execute(void);
+extern void xpc_exploit_cleanup(void);
+extern int mach_info_leak_init(void);
+extern int mach_info_leak_execute(void);
+extern uint64_t mach_info_leak_get_kernel_base(void);
+extern uint64_t mach_info_leak_get_kernel_slide(void);
+
+/* Export for Swift bridge */
 int32_t jailbreak_init(void) {
     if (g_jailbreak_initialized) {
         return 0; // Already initialized
@@ -45,6 +58,15 @@ int32_t jailbreak_init(void) {
     g_jailbreak_initialized = 1;
     g_exploit_active = 0;
     
+    // Initialize IOKit connections
+    iokit_exploit_init();
+    
+    // Initialize XPC connections
+    xpc_exploit_init();
+    
+    // Initialize mach info leak
+    mach_info_leak_init();
+    
     return 0;
 }
 
@@ -53,15 +75,30 @@ int32_t jailbreak_run(void) {
         jailbreak_init();
     }
     
-    // Run the main jailbreak routine
-    // In a real implementation, this would call jailbreak_main()
-    // For now, we set exploit as active for testing
-    g_exploit_active = 1;
+    // Stage 1: Run mach info leak to get kernel base
+    mach_info_leak_execute();
+    g_kernel_base = mach_info_leak_get_kernel_base();
+    g_kernel_slide = mach_info_leak_get_kernel_slide();
     
-    return 0;
+    // Stage 2: Run IOKit exploitation
+    iokit_exploit_execute();
+    
+    // Stage 3: Run XPC exploitation
+    xpc_exploit_execute();
+    
+    // Mark exploit as active if we got kernel info
+    if (g_kernel_base != 0) {
+        g_exploit_active = 1;
+    }
+    
+    return g_exploit_active ? 0 : -1;
 }
 
 void jailbreak_cleanup(void) {
+    // Cleanup exploit modules
+    iokit_exploit_cleanup();
+    xpc_exploit_cleanup();
+    
     g_exploit_active = 0;
     g_jailbreak_initialized = 0;
     g_kernel_base = 0;
@@ -71,20 +108,26 @@ void jailbreak_cleanup(void) {
 // MARK: - Kernel Functions
 
 uint64_t find_kernel_base(void) {
-    // Try to find kernel base
-    // This would use the kernel info leak in a real implementation
+    // Use mach info leak to find kernel base
     if (g_kernel_base == 0) {
-        // Default kernel base for iOS 26.x
-        g_kernel_base = 0xFFFFFFF007004000ULL;
+        mach_info_leak_execute();
+        g_kernel_base = mach_info_leak_get_kernel_base();
+        
+        // Fallback to default if leak failed
+        if (g_kernel_base == 0) {
+            g_kernel_base = 0xFFFFFFF007004000ULL;
+        }
     }
     return g_kernel_base;
 }
 
 uint64_t leak_kernel_slide(void) {
-    // Leak kernel ASLR slide
+    // Use mach info leak to get kernel slide
     if (g_kernel_slide == 0) {
-        // In real implementation, this would use the info leak
-        g_kernel_slide = 0;
+        if (g_kernel_base == 0) {
+            find_kernel_base();
+        }
+        g_kernel_slide = mach_info_leak_get_kernel_slide();
     }
     return g_kernel_slide;
 }
