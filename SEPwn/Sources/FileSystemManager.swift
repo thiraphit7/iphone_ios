@@ -135,9 +135,27 @@ class FileSystemManager: ObservableObject {
         return success
     }
     
+    /// Create a new file at specific path
+    func createFile(at path: String, content: String) -> Bool {
+        let success = ExploitBridge.writeFile(path, contents: content)
+        if success {
+            refresh()
+        }
+        return success
+    }
+    
     /// Create a new directory
     func createDirectory(name: String) -> Bool {
         let path = (currentPath as NSString).appendingPathComponent(name)
+        let success = ExploitBridge.createDirectory(path)
+        if success {
+            refresh()
+        }
+        return success
+    }
+    
+    /// Create a new directory at specific path
+    func createDirectory(at path: String) -> Bool {
         let success = ExploitBridge.createDirectory(path)
         if success {
             refresh()
@@ -214,6 +232,20 @@ class FileSystemManager: ObservableObject {
     /// Search for files
     func searchFiles(pattern: String) -> [String] {
         return ExploitBridge.searchFiles(in: currentPath, pattern: pattern) ?? []
+    }
+    
+    /// Set permissions at path
+    func setPermissions(at path: String, mode: String) -> Bool {
+        let success = ExploitBridge.chmod(path, permissions: mode)
+        if success {
+            refresh()
+        }
+        return success
+    }
+    
+    /// Search for files with query in path
+    func search(query: String, in path: String) -> [String] {
+        return ExploitBridge.searchFiles(in: path, pattern: query) ?? []
     }
     
     /// Get file info

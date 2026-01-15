@@ -115,8 +115,6 @@ struct FileManagerView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    // MARK: - File Action Buttons
-    
     private func fileActionButtons() -> [ActionSheet.Button] {
         var buttons: [ActionSheet.Button] = []
         
@@ -145,8 +143,6 @@ struct FileManagerView: View {
         return buttons
     }
     
-    // MARK: - Locked View
-    
     private var lockedView: some View {
         VStack(spacing: 20) {
             Image(systemName: "lock.fill")
@@ -167,14 +163,10 @@ struct FileManagerView: View {
         .background(Color(.systemBackground))
     }
     
-    // MARK: - File List View
-    
     private var fileListView: some View {
         VStack(spacing: 0) {
-            // Path bar
             pathBar
             
-            // File list
             if fileManager.isLoading {
                 ProgressView("Loading...")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -198,8 +190,6 @@ struct FileManagerView: View {
             }
         }
     }
-    
-    // MARK: - Path Bar
     
     private var pathBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -231,8 +221,6 @@ struct FileManagerView: View {
         .background(Color(.secondarySystemBackground))
     }
     
-    // MARK: - Empty Directory View
-    
     private var emptyDirectoryView: some View {
         VStack(spacing: 16) {
             Image(systemName: "folder")
@@ -245,8 +233,6 @@ struct FileManagerView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
-    // MARK: - New Item Sheet
     
     private func newItemSheet(isFolder: Bool) -> some View {
         NavigationView {
@@ -282,8 +268,6 @@ struct FileManagerView: View {
         }
     }
     
-    // MARK: - Search Sheet
-    
     private var searchSheet: some View {
         NavigationView {
             VStack {
@@ -317,7 +301,6 @@ struct FileManagerView: View {
                 } else {
                     List(searchResults, id: \.self) { result in
                         Button(action: {
-                            // Navigate to file location
                             let parentPath = (result as NSString).deletingLastPathComponent
                             fileManager.navigateTo(parentPath)
                             showingSearchSheet = false
@@ -344,8 +327,6 @@ struct FileManagerView: View {
             }
         }
     }
-    
-    // MARK: - Rename Sheet
     
     private var renameSheet: some View {
         NavigationView {
@@ -375,8 +356,6 @@ struct FileManagerView: View {
         }
     }
     
-    // MARK: - Permissions Sheet
-    
     private func permissionsSheet(file: FileItem) -> some View {
         NavigationView {
             Form {
@@ -397,7 +376,7 @@ struct FileManagerView: View {
                     HStack {
                         Text("Size")
                         Spacer()
-                        Text(file.sizeString)
+                        Text(file.formattedSize)
                             .foregroundColor(.secondary)
                     }
                     HStack {
@@ -432,8 +411,6 @@ struct FileManagerView: View {
             }
         }
     }
-    
-    // MARK: - Actions
     
     private func handleItemTap(_ item: FileItem) {
         if item.isDirectory {
@@ -506,20 +483,16 @@ struct FileManagerView: View {
     }
 }
 
-// MARK: - File Row View
-
 struct FileRowView: View {
     let item: FileItem
     
     var body: some View {
         HStack(spacing: 12) {
-            // Icon
             Image(systemName: item.icon)
                 .font(.title2)
                 .foregroundColor(item.iconColor)
                 .frame(width: 32)
             
-            // Info
             VStack(alignment: .leading, spacing: 2) {
                 Text(item.name)
                     .font(.body)
@@ -529,10 +502,9 @@ struct FileRowView: View {
                     Text(item.permissions)
                         .font(.caption2)
                         .foregroundColor(.secondary)
-                        .fontDesign(.monospaced)
                     
                     if !item.isDirectory {
-                        Text(item.sizeString)
+                        Text(item.formattedSize)
                             .font(.caption2)
                             .foregroundColor(.secondary)
                     }
@@ -541,7 +513,6 @@ struct FileRowView: View {
             
             Spacer()
             
-            // Chevron for directories
             if item.isDirectory {
                 Image(systemName: "chevron.right")
                     .font(.caption)
@@ -549,271 +520,5 @@ struct FileRowView: View {
             }
         }
         .padding(.vertical, 4)
-    }
-}
-
-// MARK: - File Item Model
-
-struct FileItem: Identifiable {
-    let id = UUID()
-    let name: String
-    let path: String
-    let isDirectory: Bool
-    let size: Int64
-    let permissions: String
-    let owner: String
-    let group: String
-    let modificationDate: Date?
-    
-    var sizeString: String {
-        if size < 1024 {
-            return "\(size) B"
-        } else if size < 1024 * 1024 {
-            return String(format: "%.1f KB", Double(size) / 1024)
-        } else if size < 1024 * 1024 * 1024 {
-            return String(format: "%.1f MB", Double(size) / (1024 * 1024))
-        } else {
-            return String(format: "%.1f GB", Double(size) / (1024 * 1024 * 1024))
-        }
-    }
-    
-    var icon: String {
-        if isDirectory {
-            return "folder.fill"
-        }
-        
-        let ext = (name as NSString).pathExtension.lowercased()
-        switch ext {
-        case "txt", "md", "log":
-            return "doc.text.fill"
-        case "plist", "xml", "json":
-            return "doc.badge.gearshape.fill"
-        case "dylib", "framework":
-            return "shippingbox.fill"
-        case "app":
-            return "app.fill"
-        case "png", "jpg", "jpeg", "gif":
-            return "photo.fill"
-        case "mp3", "wav", "m4a":
-            return "music.note"
-        case "mp4", "mov":
-            return "video.fill"
-        case "sh", "py", "swift", "c", "h", "m":
-            return "chevron.left.forwardslash.chevron.right"
-        case "deb":
-            return "shippingbox.fill"
-        default:
-            return "doc.fill"
-        }
-    }
-    
-    var iconColor: Color {
-        if isDirectory {
-            return .blue
-        }
-        
-        let ext = (name as NSString).pathExtension.lowercased()
-        switch ext {
-        case "dylib", "framework", "deb":
-            return .purple
-        case "app":
-            return .green
-        case "plist", "xml", "json":
-            return .orange
-        case "png", "jpg", "jpeg", "gif":
-            return .pink
-        case "sh", "py", "swift", "c", "h", "m":
-            return .cyan
-        default:
-            return .gray
-        }
-    }
-}
-
-// MARK: - File System Manager
-
-class FileSystemManager: ObservableObject {
-    @Published var currentPath: String = "/"
-    @Published var items: [FileItem] = []
-    @Published var isLoading: Bool = false
-    @Published var error: String?
-    
-    private var pathHistory: [String] = ["/"]
-    
-    init() {
-        refresh()
-    }
-    
-    func navigateTo(_ path: String) {
-        currentPath = path
-        pathHistory.append(path)
-        refresh()
-    }
-    
-    func goBack() -> Bool {
-        guard pathHistory.count > 1 else { return false }
-        pathHistory.removeLast()
-        currentPath = pathHistory.last ?? "/"
-        refresh()
-        return true
-    }
-    
-    func refresh() {
-        isLoading = true
-        error = nil
-        
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
-            
-            if let fileItems = ExploitBridge.listDirectory(self.currentPath) {
-                DispatchQueue.main.async {
-                    self.items = fileItems.map { bridgeItem in
-                        FileItem(
-                            name: bridgeItem.name,
-                            path: bridgeItem.path,
-                            isDirectory: bridgeItem.isDirectory,
-                            size: bridgeItem.size,
-                            permissions: bridgeItem.permissions,
-                            owner: bridgeItem.owner,
-                            group: bridgeItem.group,
-                            modificationDate: nil
-                        )
-                    }
-                    self.isLoading = false
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.error = "Failed to list directory"
-                    self.items = []
-                    self.isLoading = false
-                }
-            }
-        }
-    }
-    
-    func createDirectory(at path: String) -> Bool {
-        return ExploitBridge.createDirectory(path)
-    }
-    
-    func createFile(at path: String, content: String) -> Bool {
-        return ExploitBridge.writeFile(path, content: content)
-    }
-    
-    func deleteItem(at path: String) -> Bool {
-        return ExploitBridge.deleteFile(path)
-    }
-    
-    func moveItem(from source: String, to destination: String) -> Bool {
-        return ExploitBridge.moveFile(source, to: destination)
-    }
-    
-    func copyItem(from source: String, to destination: String) -> Bool {
-        return ExploitBridge.copyFile(source, to: destination)
-    }
-    
-    func setPermissions(at path: String, mode: String) -> Bool {
-        return ExploitBridge.setPermissions(path, mode: mode)
-    }
-    
-    func readFile(at path: String) -> String? {
-        return ExploitBridge.readFile(path)
-    }
-    
-    func writeFile(at path: String, content: String) -> Bool {
-        return ExploitBridge.writeFile(path, content: content)
-    }
-    
-    func search(query: String, in path: String) -> [String] {
-        guard let output = ExploitBridge.executeShellCommand("find '\(path)' -name '*\(query)*' -maxdepth 5 2>/dev/null | head -50") else {
-            return []
-        }
-        return output.components(separatedBy: "\n").filter { !$0.isEmpty }
-    }
-}
-
-// MARK: - File Editor View
-
-struct FileEditorView: View {
-    let filePath: String
-    @ObservedObject var fileManager: FileSystemManager
-    
-    @State private var content: String = ""
-    @State private var isLoading: Bool = true
-    @State private var isSaving: Bool = false
-    @State private var showingSaveError: Bool = false
-    @State private var hasChanges: Bool = false
-    
-    @Environment(\.presentationMode) private var presentationMode
-    
-    var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                if isLoading {
-                    ProgressView("Loading...")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    TextEditor(text: $content)
-                        .font(.system(.body, design: .monospaced))
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        .onChange(of: content) { _ in
-                            hasChanges = true
-                        }
-                }
-            }
-            .navigationTitle((filePath as NSString).lastPathComponent)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveFile()
-                    }
-                    .disabled(!hasChanges || isSaving)
-                }
-            }
-            .alert(isPresented: $showingSaveError) {
-                Alert(
-                    title: Text("Save Error"),
-                    message: Text("Failed to save file. Check permissions."),
-                    dismissButton: .default(Text("OK"))
-                )
-            }
-        }
-        .onAppear {
-            loadFile()
-        }
-    }
-    
-    private func loadFile() {
-        isLoading = true
-        DispatchQueue.global(qos: .userInitiated).async {
-            let fileContent = fileManager.readFile(at: filePath) ?? ""
-            DispatchQueue.main.async {
-                content = fileContent
-                isLoading = false
-                hasChanges = false
-            }
-        }
-    }
-    
-    private func saveFile() {
-        isSaving = true
-        DispatchQueue.global(qos: .userInitiated).async {
-            let success = fileManager.writeFile(at: filePath, content: content)
-            DispatchQueue.main.async {
-                isSaving = false
-                if success {
-                    hasChanges = false
-                    presentationMode.wrappedValue.dismiss()
-                } else {
-                    showingSaveError = true
-                }
-            }
-        }
     }
 }
