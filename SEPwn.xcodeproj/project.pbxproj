@@ -11,7 +11,9 @@
 		E8100001001 /* SEPwnApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002001; };
 		E8100001002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002002; };
 		E8100001003 /* JailbreakManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002003; };
-		E8100001004 /* ExploitBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002004; };
+			E8100001004 /* ExploitBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002004; };
+			E8100001005 /* TerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002005; };
+			E8100001006 /* ShellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100002006; };
 		
 		/* Frameworks */
 		E8100003001 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8100004001; };
@@ -29,7 +31,9 @@
 		E8100002001 /* SEPwnApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEPwnApp.swift; sourceTree = "<group>"; };
 		E8100002002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E8100002003 /* JailbreakManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JailbreakManager.swift; sourceTree = "<group>"; };
-		E8100002004 /* ExploitBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploitBridge.swift; sourceTree = "<group>"; };
+			E8100002004 /* ExploitBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploitBridge.swift; sourceTree = "<group>"; };
+			E8100002005 /* TerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalView.swift; sourceTree = "<group>"; };
+			E8100002006 /* ShellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellManager.swift; sourceTree = "<group>"; };
 		
 		/* C source files (for reference) */
 		E8100002101 /* jailbreak_ios26.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jailbreak_ios26.c; sourceTree = "<group>"; };
@@ -116,7 +120,9 @@
 				E8100002001 /* SEPwnApp.swift */,
 				E8100002002 /* ContentView.swift */,
 				E8100002003 /* JailbreakManager.swift */,
-				E8100002004 /* ExploitBridge.swift */,
+					E8100002004 /* ExploitBridge.swift */,
+					E8100002005 /* TerminalView.swift */,
+					E8100002006 /* ShellManager.swift */,
 				E8100002101 /* jailbreak_ios26.c */,
 				E8100002102 /* kernel_rw_primitives.c */,
 				E8100002103 /* kernel_info_leak.c */,
@@ -231,7 +237,9 @@
 				E8100001001 /* SEPwnApp.swift in Sources */,
 				E8100001002 /* ContentView.swift in Sources */,
 				E8100001003 /* JailbreakManager.swift in Sources */,
-				E8100001004 /* ExploitBridge.swift in Sources */,
+					E8100001004 /* ExploitBridge.swift in Sources */,
+					E8100001005 /* TerminalView.swift in Sources */,
+					E8100001006 /* ShellManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
