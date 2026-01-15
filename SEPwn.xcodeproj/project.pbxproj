@@ -368,6 +368,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
+				EXECUTABLE_NAME = SEPwn;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "SEPwn/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = SEPwn;
@@ -383,7 +384,8 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.security.sepwn;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = SEPwn;
+				PRODUCT_NAME = SEPwn;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -403,6 +405,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
+				EXECUTABLE_NAME = SEPwn;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "SEPwn/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = SEPwn;
@@ -418,7 +421,8 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.security.sepwn;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_MODULE_NAME = SEPwn;
+				PRODUCT_NAME = SEPwn;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
